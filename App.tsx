@@ -12,6 +12,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/common/config'
 
 function App(): JSX.Element {
+  console.log('Reading from env: ', RN_APP_CONFIG)
   const isDarkMode = useColorScheme() === 'dark'
 
   const backgroundStyle = {

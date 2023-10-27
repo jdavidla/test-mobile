@@ -10,11 +10,17 @@
     "test": "jest",
     "ipods": "cd ios && pod deintegrate && pod setup && pod install",
     "ios:dev": "react-native run-ios --mode=Debug --scheme \"dev\"",
+    "ios:dev-release": "react-native run-ios --mode=Release --scheme \"dev\"",
     "ios:staging": "react-native run-ios --mode=Debug --scheme \"staging\"",
+    "ios:staging-release": "react-native run-ios --mode=Release --scheme \"staging\"",
     "ios:prod": "react-native run-ios --mode=Debug --scheme \"prod\"",
+    "ios:prod-release": "react-native run-ios --mode=Release --scheme \"prod\"",
     "android:dev": "react-native run-android --mode=devDebug --appIdSuffix=dev",
+    "android:dev-release": "react-native run-android --mode=devRelease --appIdSuffix=dev",
     "android:staging": "react-native run-android --mode=stagingDebug --appIdSuffix=staging",
-    "android:prod": "react-native run-android --mode=prodDebug --appIdSuffix=prod"
+    "android:staging-release": "react-native run-android --mode=stagingRelease --appIdSuffix=staging",
+    "android:prod": "react-native run-android --mode=prodDebug --appIdSuffix=prod",
+    "android:prod-release": "react-native run-android --mode=prodRelease --appIdSuffix=prod"
   },
   "dependencies": {
     "react": "18.2.0",
