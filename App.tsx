@@ -7,9 +7,10 @@
 
 import React from 'react'
 import { SafeAreaView, Text, useColorScheme, View } from 'react-native'
-
+import { NavigationContainer } from '@react-navigation/native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/common/config'
+import NavigationSwitch from './src/navigation/navigation-switch.component'
 
 function App(): JSX.Element {
   console.log('Reading from env: ', RN_APP_CONFIG)
@@ -21,13 +22,11 @@ function App(): JSX.Element {
   }
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <View style={{ flex: 1 }}>
-        <Text>Home</Text>
-        <Text>Env</Text>
-        <Text>{RN_APP_CONFIG}</Text>
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={backgroundStyle}>
+        <NavigationSwitch isLoggedIn={true} />
+      </SafeAreaView>
+    </NavigationContainer>
   )
 }
 
