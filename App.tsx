@@ -5,6 +5,8 @@
  * @format
  */
 
+// Splash screen config was build based on: https://medium.com/@FreeTutorialsIndia/splash-screen-in-react-native-android-ios-2020-842f26d1da98
+
 import React, { useEffect } from 'react'
 import { SafeAreaView, useColorScheme } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
