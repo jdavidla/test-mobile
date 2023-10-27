@@ -6,7 +6,7 @@
  */
 
 import React from 'react'
-import { SafeAreaView, Text, useColorScheme, View } from 'react-native'
+import { SafeAreaView, useColorScheme } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/common/config'
@@ -24,7 +24,7 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <SafeAreaView style={backgroundStyle}>
-        <NavigationSwitch isLoggedIn={true} />
+        <NavigationSwitch isLoggedIn={false} />
       </SafeAreaView>
     </NavigationContainer>
   )
