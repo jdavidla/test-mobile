@@ -23,6 +23,7 @@
     "android:prod-release": "ENVFILE=.env.prod npx react-native run-android --mode=prodRelease --appIdSuffix=prod"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^18.6.0",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
     "react": "18.2.0",
