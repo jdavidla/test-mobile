@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "317195058065",
+    "project_id": "david-testing-dev",
+    "storage_bucket": "david-testing-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317195058065:android:5350f321fb4d7aca6bf830",
+        "android_client_info": {
+          "package_name": "com.davidtesting"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_56xbJuVGURCXACDB6p0B18mHedt9boM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

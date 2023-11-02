@@ -15,12 +15,12 @@
     "ios:staging-release": "ENVFILE=.env.staging npx react-native run-ios --mode=Release --scheme \"staging\"",
     "ios:prod": "ENVFILE=.env.prod npx react-native run-ios --mode=Debug --scheme \"prod\"",
     "ios:prod-release": "ENVFILE=.env.prod npx react-native run-ios --mode=Release --scheme \"prod\"",
-    "android:dev": "ENVFILE=.env.dev npx react-native run-android --mode=devDebug --appIdSuffix=dev",
-    "android:dev-release": "ENVFILE=.env.dev npx react-native run-android --mode=devRelease --appIdSuffix=dev",
-    "android:staging": "ENVFILE=.env.staging npx react-native run-android --mode=stagingDebug --appIdSuffix=staging",
-    "android:staging-release": "ENVFILE=.env.staging npx react-native run-android --mode=stagingRelease --appIdSuffix=staging",
-    "android:prod": "ENVFILE=.env.prod npx react-native run-android --mode=prodDebug --appIdSuffix=prod",
-    "android:prod-release": "ENVFILE=.env.prod npx react-native run-android --mode=prodRelease --appIdSuffix=prod"
+    "android:dev": "ENVFILE=.env.dev npx react-native run-android --mode=devDebug",
+    "android:dev-release": "ENVFILE=.env.dev npx react-native run-android --mode=devRelease",
+    "android:staging": "ENVFILE=.env.staging npx react-native run-android --mode=stagingDebug",
+    "android:staging-release": "ENVFILE=.env.staging npx react-native run-android --mode=stagingRelease",
+    "android:prod": "ENVFILE=.env.prod npx react-native run-android --mode=prodDebug",
+    "android:prod-release": "ENVFILE=.env.prod npx react-native run-android --mode=prodRelease"
   },
   "dependencies": {
     "@react-native-firebase/app": "^18.6.0",
