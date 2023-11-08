@@ -8,7 +8,7 @@
 // Splash screen config was build based on: https://medium.com/@FreeTutorialsIndia/splash-screen-in-react-native-android-ios-2020-842f26d1da98
 
 import React, { useEffect } from 'react'
-import { SafeAreaView, useColorScheme } from 'react-native'
+import { SafeAreaView, useColorScheme, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/common/config'
@@ -30,6 +30,7 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <SafeAreaView style={backgroundStyle}>
+        {RN_APP_CONFIG !== 'prod' && <Text>Hello from: {RN_APP_CONFIG}</Text>}
         <NavigationSwitch isLoggedIn={false} />
       </SafeAreaView>
     </NavigationContainer>
