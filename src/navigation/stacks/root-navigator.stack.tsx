@@ -12,16 +12,9 @@ const NavigationSwitch = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {!isLoggedIn ? (
-        <>
-          <Stack.Screen
-            name="UnauthorizedStack"
-            component={UnauthorizedStack}
-          />
-        </>
+        <Stack.Screen name="UnauthorizedStack" component={UnauthorizedStack} />
       ) : (
-        <>
-          <Stack.Screen name="HomeStack" component={HomeStack} />
-        </>
+        <Stack.Screen name="HomeStack" component={HomeStack} />
       )}
     </Stack.Navigator>
   )
