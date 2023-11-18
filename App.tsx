@@ -11,9 +11,11 @@ import React, { useEffect } from 'react'
 import { SafeAreaView, useColorScheme, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
-import { RN_APP_CONFIG } from './src/shared/common/config'
+import { RN_APP_CONFIG } from './src/shared/config/envs.config'
 import SplashScreen from 'react-native-splash-screen'
-import NavigationSwitch from './src/navigation/navigation-switch.component'
+import NavigationSwitch from './src/navigation/stacks/root-navigator.stack'
+
+import './src/shared/config/styles.config'
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -30,7 +32,7 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <SafeAreaView style={backgroundStyle}>
-        <Text>Hello from: {RN_APP_CONFIG}</Text>
+        {RN_APP_CONFIG !== 'prod' && <Text>Hello from: {RN_APP_CONFIG}</Text>}
         <NavigationSwitch isLoggedIn={false} />
       </SafeAreaView>
     </NavigationContainer>

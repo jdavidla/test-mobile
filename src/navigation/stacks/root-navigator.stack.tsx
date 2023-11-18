@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import UnauthorizedStack from '../navigation/stacks/unauthorized.stack'
-import HomeStack from '../navigation/stacks/home.stack'
+import UnauthorizedStack from './unauthorized.stack'
+import HomeStack from './home.stack'
 
 type Props = {
   isLoggedIn?: boolean
