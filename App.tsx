@@ -13,7 +13,8 @@ import { NavigationContainer } from '@react-navigation/native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/config/envs.config'
 import SplashScreen from 'react-native-splash-screen'
-import NavigationSwitch from './src/navigation/stacks/root-navigator.stack'
+import RootNavigator from './src/navigation/stacks/root-navigator.stack'
+import { AuthProvider } from './src/contexts/auth.context'
 
 import './src/shared/config/styles.config'
 
@@ -33,7 +34,9 @@ function App(): JSX.Element {
     <NavigationContainer>
       <SafeAreaView style={backgroundStyle}>
         {RN_APP_CONFIG !== 'prod' && <Text>Hello from: {RN_APP_CONFIG}</Text>}
-        <NavigationSwitch isLoggedIn={false} />
+        <AuthProvider>
+          <RootNavigator />
+        </AuthProvider>
       </SafeAreaView>
     </NavigationContainer>
   )
