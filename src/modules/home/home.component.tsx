@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { View, Text, Button } from 'react-native'
 import { AuthContext } from '../../contexts/auth.context'
 
-const Login = () => {
+const Home = () => {
   const { logOut } = useContext(AuthContext)
 
   return (
@@ -13,4 +13,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Home

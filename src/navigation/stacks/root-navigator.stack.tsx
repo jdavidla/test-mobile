@@ -1,17 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, FC, useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import UnauthorizedStack from './unauthorized.stack'
-import HomeStack from './home.stack'
+import HomeStack from './authorized.stack'
 import { AuthContext } from '../../contexts/auth.context'
+import { FirebaseAuthTypes } from '@react-native-firebase/auth'
+
+type Props = {
+  user: FirebaseAuthTypes.User | null
+}
 
 const Stack = createNativeStackNavigator()
 
-const NavigationSwitch = () => {
-  const { isLoggedIn } = useContext(AuthContext)
+const NavigationSwitch: FC<Props> = ({ user }) => {
+  const { authenticate } = useContext(AuthContext)
+
+  useEffect(() => {
+    authenticate(user)
+  }, [user])
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {!isLoggedIn ? (
+      {!user ? (
         <Stack.Screen name="UnauthorizedStack" component={UnauthorizedStack} />
       ) : (
         <Stack.Screen name="HomeStack" component={HomeStack} />

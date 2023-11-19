@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { View, Text, Button } from 'react-native'
 import styles from './login.style'
 import auth from '@react-native-firebase/auth'

@@ -1,42 +1,27 @@
-import React, {
-  createContext,
-  useState,
-  FC,
-  PropsWithChildren,
-  useEffect
-} from 'react'
+import React, { createContext, useState, FC, PropsWithChildren } from 'react'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
 type AuthContext = {
   isLoggedIn: boolean
   logOut: () => void
+  authenticate: (user: FirebaseAuthTypes.User | null) => void
 }
 
 const DEFAULT_CONTEXT: AuthContext = {
   isLoggedIn: false,
-  logOut: () => {}
+  logOut: () => {},
+  authenticate: () => {}
 }
 
 const AuthContext = createContext<AuthContext>(DEFAULT_CONTEXT)
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
 
-  const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
-    console.log('devug user', user)
-    setUser(user)
-  }
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
-
-    return subscriber
-  }, [])
-
-  useEffect(() => {
+  const authenticate = (user: FirebaseAuthTypes.User | null) => {
+    console.log('devug authenticate !!user', !!user)
     setIsLoggedIn(!!user)
-  }, [user, setIsLoggedIn])
+  }
 
   const logOut = async () => {
     try {
@@ -49,7 +34,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, logOut }}>
+    <AuthContext.Provider value={{ isLoggedIn, logOut, authenticate }}>
       {children}
     </AuthContext.Provider>
   )
