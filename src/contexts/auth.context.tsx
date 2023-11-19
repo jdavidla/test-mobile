@@ -10,7 +10,7 @@ type AuthContext = {
 const DEFAULT_CONTEXT: AuthContext = {
   isLoggedIn: false,
   logOut: () => {},
-  authenticate: () => {}
+  authenticate: (user: FirebaseAuthTypes.User | null) => {}
 }
 
 const AuthContext = createContext<AuthContext>(DEFAULT_CONTEXT)

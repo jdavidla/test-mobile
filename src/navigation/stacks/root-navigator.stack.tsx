@@ -1,7 +1,7 @@
 import React, { useContext, FC, useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import UnauthorizedStack from './unauthorized.stack'
-import HomeStack from './authorized.stack'
+import AuthorizedStack from './authorized.stack'
 import { AuthContext } from '../../contexts/auth.context'
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
@@ -23,7 +23,7 @@ const NavigationSwitch: FC<Props> = ({ user }) => {
       {!user ? (
         <Stack.Screen name="UnauthorizedStack" component={UnauthorizedStack} />
       ) : (
-        <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="AuthorizedStack" component={AuthorizedStack} />
       )}
     </Stack.Navigator>
   )

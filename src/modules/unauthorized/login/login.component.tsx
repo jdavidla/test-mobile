@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native'
 import styles from './login.style'
 import auth from '@react-native-firebase/auth'
 
-const Login = () => {
+const Login = ({ route }) => {
   const onLoginAnonymous = async () => {
     try {
       await auth().signInAnonymously()
@@ -20,6 +20,8 @@ const Login = () => {
   return (
     <View style={styles.root}>
       <Text style={styles.text}>Login</Text>
+      <Text>Route</Text>
+      <Text>{JSON.stringify(route)}</Text>
       <Button title="Login Anonymous" onPress={onLoginAnonymous} />
     </View>
   )

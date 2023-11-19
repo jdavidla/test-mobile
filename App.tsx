@@ -14,6 +14,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/config/envs.config'
 import SplashScreen from 'react-native-splash-screen'
 import RootNavigator from './src/navigation/stacks/root-navigator.stack'
+import linking from './src/navigation/linking'
 import { AuthProvider } from './src/contexts/auth.context'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
@@ -42,7 +43,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <SafeAreaView style={backgroundStyle}>
         {RN_APP_CONFIG !== 'prod' && <Text>Hello from: {RN_APP_CONFIG}</Text>}
         <AuthProvider>
