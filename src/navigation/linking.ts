@@ -9,7 +9,7 @@ type AuthorizedStackParamList = {
   Profile: undefined
 }
 
-type RootStackParamList = {
+export type RootStackParamList = {
   UnauthorizedStack: NavigatorScreenParams<UnauthorizedStackParamList>
   AuthorizedStack: NavigatorScreenParams<AuthorizedStackParamList>
 }

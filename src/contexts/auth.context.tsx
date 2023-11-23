@@ -1,32 +1,33 @@
 import React, { createContext, useState, FC, PropsWithChildren } from 'react'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
-type AuthContext = {
-  isLoggedIn: boolean
+type AppContext = {
   logOut: () => void
-  authenticate: (user: FirebaseAuthTypes.User | null) => void
+  deeplink: string | null
+  setDeepLink: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-const DEFAULT_CONTEXT: AuthContext = {
-  isLoggedIn: false,
+const DEFAULT_CONTEXT: AppContext = {
   logOut: () => {},
-  authenticate: (user: FirebaseAuthTypes.User | null) => {}
+  deeplink: null,
+  setDeepLink: () => {}
 }
 
-const AuthContext = createContext<AuthContext>(DEFAULT_CONTEXT)
+const AppContext = createContext<AppContext>(DEFAULT_CONTEXT)
 
-const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+const AppProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [deeplink, setDeepLink] = useState<string | null>(
+    DEFAULT_CONTEXT.deeplink
+  )
 
-  const authenticate = (user: FirebaseAuthTypes.User | null) => {
-    console.log('devug authenticate !!user', !!user)
-    setIsLoggedIn(!!user)
+  const clearContext = () => {
+    setDeepLink(null)
   }
 
   const logOut = async () => {
     try {
       await auth().signOut()
-      setIsLoggedIn(false)
+      clearContext()
       console.log('User signed out!')
     } catch (error) {
       console.log('devug error', error)
@@ -34,10 +35,10 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, logOut, authenticate }}>
+    <AppContext.Provider value={{ logOut, deeplink, setDeepLink }}>
       {children}
-    </AuthContext.Provider>
+    </AppContext.Provider>
   )
 }
 
-export { AuthContext, AuthProvider }
+export { AppContext, AppProvider }

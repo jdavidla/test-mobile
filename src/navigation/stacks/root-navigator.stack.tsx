@@ -2,21 +2,22 @@ import React, { useContext, FC, useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import UnauthorizedStack from './unauthorized.stack'
 import AuthorizedStack from './authorized.stack'
-import { AuthContext } from '../../contexts/auth.context'
+import { AppContext } from '../../contexts/auth.context'
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
 type Props = {
   user: FirebaseAuthTypes.User | null
+  deepLink: string | null
 }
 
 const Stack = createNativeStackNavigator()
 
-const NavigationSwitch: FC<Props> = ({ user }) => {
-  const { authenticate } = useContext(AuthContext)
+const NavigationSwitch: FC<Props> = ({ user, deepLink }) => {
+  const { setDeepLink } = useContext(AppContext)
 
   useEffect(() => {
-    authenticate(user)
-  }, [user])
+    if (deepLink) setDeepLink(deepLink)
+  }, [deepLink, setDeepLink])
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

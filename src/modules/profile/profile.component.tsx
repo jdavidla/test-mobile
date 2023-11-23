@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../contexts/auth.context'
+import { AppContext } from '../../contexts/auth.context'
 import { View, Text, Button } from 'react-native'
 
 const Profile = ({ route }) => {
-  const { logOut } = useContext(AuthContext)
+  const { logOut } = useContext(AppContext)
 
   return (
     <View style={{ flex: 1 }}>
