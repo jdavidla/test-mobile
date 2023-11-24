@@ -5,8 +5,18 @@ import {
 } from '../../../shared/services/auth.service'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import EmailPasswordForm from '../../../shared/forms/email-password/email-password-form.type'
-import schema from '../../../shared/forms/email-password/email-password-form.schema'
+import { email, password } from '../../../shared/forms/inputs.validations'
+import * as yup from 'yup'
+
+export type LoginFormType = {
+  email: string
+  password: string
+}
+
+const schema: yup.ObjectSchema<LoginFormType> = yup.object({
+  email,
+  password
+})
 
 const useLogin = () => {
   const [loginUserError, setLoginUserError] = useState<string>()
@@ -15,7 +25,7 @@ const useLogin = () => {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<EmailPasswordForm>({
+  } = useForm<LoginFormType>({
     resolver: yupResolver(schema)
   })
 

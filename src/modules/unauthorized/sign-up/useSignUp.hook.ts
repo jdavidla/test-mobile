@@ -2,8 +2,20 @@ import { useState } from 'react'
 import { createUserWithEmailAndPassword } from '../../../shared/services/auth.service'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import EmailPasswordForm from '../../../shared/forms/email-password/email-password-form.type'
-import schema from '../../../shared/forms/email-password/email-password-form.schema'
+import { email, password } from '../../../shared/forms/inputs.validations'
+import * as yup from 'yup'
+
+export type SignUpFormType = {
+  email: string
+  password: string
+  confirmPassword: string
+}
+
+const schema: yup.ObjectSchema<SignUpFormType> = yup.object({
+  email,
+  password,
+  confirmPassword: password.oneOf([yup.ref('password')], 'Passwords must match')
+})
 
 const useSignUp = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -12,7 +24,7 @@ const useSignUp = () => {
     handleSubmit,
     control,
     formState: { errors }
-  } = useForm<EmailPasswordForm>({
+  } = useForm<SignUpFormType>({
     resolver: yupResolver(schema)
   })
 
