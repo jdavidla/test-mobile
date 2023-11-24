@@ -15,8 +15,13 @@ const currentUser = () => {
   return auth().currentUser
 }
 
+const signInAnonymously = async () => {
+  return auth().signInAnonymously()
+}
+
 export {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  currentUser
+  currentUser,
+  signInAnonymously
 }

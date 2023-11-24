@@ -14,21 +14,9 @@ const Login = ({ route, navigation }) => {
     errors,
     control,
     handleSubmit,
-    isLoading
+    isLoading,
+    onLoginAnonymous
   } = useLogin()
-
-  const onLoginAnonymous = async () => {
-    try {
-      await auth().signInAnonymously()
-      console.log('devug User signed in anonymously')
-    } catch (error: any) {
-      if (error.code === 'auth/operation-not-allowed') {
-        console.log('devug Enable anonymous in your firebase console.')
-      }
-
-      console.error('devug error', error)
-    }
-  }
 
   const goToSignUp = () => {
     navigation.navigate('Signup')

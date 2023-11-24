@@ -1,5 +1,8 @@
 import { useState } from 'react'
-import { signInWithEmailAndPassword } from '../../../shared/services/auth.service'
+import {
+  signInWithEmailAndPassword,
+  signInAnonymously
+} from '../../../shared/services/auth.service'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import EmailPasswordForm from '../../../shared/forms/email-password/email-password-form.type'
@@ -35,13 +38,28 @@ const useLogin = () => {
     }
   }
 
+  const onLoginAnonymous = async () => {
+    try {
+      setIsLoading(true)
+      await signInAnonymously()
+      console.log('devug User signed in anonymously')
+    } catch (error: any) {
+      if (error.code === 'auth/operation-not-allowed') {
+        console.log('devug Enable anonymous in your firebase console.')
+      }
+      console.error('devug error', error)
+      setIsLoading(false)
+    }
+  }
+
   return {
     errors,
     control,
     handleSubmit,
     loginUserError,
     loginUserEmailAndPassword,
-    isLoading
+    isLoading,
+    onLoginAnonymous
   }
 }
 
