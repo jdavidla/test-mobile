@@ -7,8 +7,16 @@ const createUserWithEmailAndPassword = async (
   return auth().createUserWithEmailAndPassword(email, password)
 }
 
+const signInWithEmailAndPassword = async (email: string, password: string) => {
+  return auth().signInWithEmailAndPassword(email, password)
+}
+
 const currentUser = () => {
   return auth().currentUser
 }
 
-export { createUserWithEmailAndPassword, currentUser }
+export {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  currentUser
+}

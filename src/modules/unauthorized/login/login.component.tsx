@@ -2,8 +2,19 @@ import React from 'react'
 import { View, Text, Button, TextInput } from 'react-native'
 import styles from './login.style'
 import auth from '@react-native-firebase/auth'
+import EmailPasswordFormType from '../../../shared/forms/email-password/email-password-form.type'
+import EmailPasswordForm from '../../../shared/forms/email-password/email-password-form.component'
+import useLogin from './useLogin.hook'
 
 const Login = ({ route, navigation }) => {
+  const {
+    loginUserError,
+    createUserEmailAndPassword,
+    errors,
+    control,
+    handleSubmit
+  } = useLogin()
+
   const onLoginAnonymous = async () => {
     try {
       await auth().signInAnonymously()
@@ -21,14 +32,22 @@ const Login = ({ route, navigation }) => {
     navigation.navigate('Signup')
   }
 
+  const onSubmitLogin = async ({ email, password }: EmailPasswordFormType) => {
+    console.log('devug data', { email, password })
+    await createUserEmailAndPassword(email, password)
+  }
+
   return (
     <View style={styles.root}>
       <Text style={styles.text}>Login</Text>
-      <View>
-        <TextInput style={styles.textInput} placeholder="email" />
-        <TextInput style={styles.textInput} placeholder="password" />
-      </View>
-      <Button title="Login" />
+      <EmailPasswordForm
+        control={control}
+        errors={errors}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmitLogin}
+        submitButtonTitle="Login"
+        submitError={loginUserError}
+      />
       <Button title="Login Anonymous" onPress={onLoginAnonymous} />
       <Button title="Register" onPress={goToSignUp} />
     </View>

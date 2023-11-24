@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { createUserWithEmailAndPassword } from '../../../shared/services/auth.service'
+import { signInWithEmailAndPassword } from '../../../shared/services/auth.service'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import EmailPasswordForm from '../../../shared/forms/email-password/email-password-form.type'
 import schema from '../../../shared/forms/email-password/email-password-form.schema'
 
-const useSignUp = () => {
-  const [createUserError, setCreateUserError] = useState<string>()
+const useLogin = () => {
+  const [loginUserError, setLoginUserError] = useState<string>()
   const {
     handleSubmit,
     control,
@@ -20,19 +20,17 @@ const useSignUp = () => {
     password: string
   ) => {
     try {
-      await createUserWithEmailAndPassword(email, password)
+      await signInWithEmailAndPassword(email, password)
     } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!')
-        setCreateUserError('That email address is already in use!')
+      if (error.code === 'auth/invalid-login') {
+        console.log(error)
+        setLoginUserError('Error - Wrong credentials')
       } else if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!')
-        setCreateUserError('That email address is invalid!')
+        console.log(error)
+        setLoginUserError('That email address is invalid!')
       } else {
         console.error(error)
-        setCreateUserError(
-          'There was an error on sign up. Please try again later'
-        )
+        setLoginUserError('There was an error. Please try again later')
       }
     }
   }
@@ -41,9 +39,9 @@ const useSignUp = () => {
     errors,
     control,
     handleSubmit,
-    createUserError,
+    loginUserError,
     createUserEmailAndPassword
   }
 }
 
-export default useSignUp
+export default useLogin
