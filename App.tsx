@@ -14,7 +14,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/config/envs.config'
 import SplashScreen from 'react-native-splash-screen'
 import RootNavigator from './src/navigation/stacks/root-navigator.stack'
-import linking, { RootStackParamList } from './src/navigation/linking'
+import { RootStackParamList } from './src/navigation/linking'
 import { AppProvider } from './src/contexts/auth.context'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { useNavigationContainerRef } from '@react-navigation/native'
@@ -28,7 +28,7 @@ function App(): JSX.Element {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
 
   const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
-    // console.log('devug onAuthStateChanged user', user)
+    console.log('devug onAuthStateChanged user', !!user)
     setUser(user)
     if (!user) setDeepLink(null)
   }
@@ -36,7 +36,7 @@ function App(): JSX.Element {
   // getInitialURL gets invoked when app launch
   const handleInitialURL = async () => {
     const url = await Linking.getInitialURL()
-    console.log('devug getInitialURL url', url, 'user', auth().currentUser)
+    console.log('devug getInitialURL url', url, 'user', !!auth().currentUser)
     if (url && !!auth().currentUser) {
       handleDeepLink(url, true)
       navigationRef.navigate('AuthorizedStack', { screen: 'Profile' }) // Navigates from home
@@ -45,7 +45,7 @@ function App(): JSX.Element {
       //   routes: [
       //     {
       //       name: 'AuthorizedStack',
-      //       params: { screen: 'Profile', params: { id: 'caca' } }
+      //       params: { screen: 'Profile', params: { id: 'getInitialURL' } }
       //     }
       //   ]
       // })
@@ -65,7 +65,7 @@ function App(): JSX.Element {
       //   routes: [
       //     {
       //       name: 'AuthorizedStack',
-      //       params: { screen: 'Profile', params: { id: 'caca' } }
+      //       params: { screen: 'Profile', params: { id: 'urlListener' } }
       //     }
       //   ]
       // })

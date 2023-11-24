@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, TextInput } from 'react-native'
 import styles from './login.style'
 import auth from '@react-native-firebase/auth'
 
-const Login = ({ route }) => {
+const Login = ({ route, navigation }) => {
   const onLoginAnonymous = async () => {
     try {
       await auth().signInAnonymously()
@@ -17,12 +17,20 @@ const Login = ({ route }) => {
     }
   }
 
+  const goToSignUp = () => {
+    navigation.navigate('Signup')
+  }
+
   return (
     <View style={styles.root}>
       <Text style={styles.text}>Login</Text>
-      <Text>Route</Text>
-      <Text>{JSON.stringify(route)}</Text>
+      <View>
+        <TextInput style={styles.textInput} placeholder="email" />
+        <TextInput style={styles.textInput} placeholder="password" />
+      </View>
+      <Button title="Login" />
       <Button title="Login Anonymous" onPress={onLoginAnonymous} />
+      <Button title="Register" onPress={goToSignUp} />
     </View>
   )
 }

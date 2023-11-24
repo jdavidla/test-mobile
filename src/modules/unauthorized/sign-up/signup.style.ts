@@ -12,5 +12,8 @@ export default EStyleSheet.create({
   },
   textInput: {
     backgroundColor: 'white'
+  },
+  errorText: {
+    color: 'red'
   }
 })
