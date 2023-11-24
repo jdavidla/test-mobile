@@ -6,6 +6,7 @@ import EmailPasswordForm from '../../../shared/forms/email-password/email-passwo
 import schema from '../../../shared/forms/email-password/email-password-form.schema'
 
 const useSignUp = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [createUserError, setCreateUserError] = useState<string>()
   const {
     handleSubmit,
@@ -20,6 +21,7 @@ const useSignUp = () => {
     password: string
   ) => {
     try {
+      setIsLoading(true)
       await createUserWithEmailAndPassword(email, password)
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
@@ -34,6 +36,7 @@ const useSignUp = () => {
           'There was an error on sign up. Please try again later'
         )
       }
+      setIsLoading(false)
     }
   }
 
@@ -42,7 +45,8 @@ const useSignUp = () => {
     control,
     handleSubmit,
     createUserError,
-    createUserEmailAndPassword
+    createUserEmailAndPassword,
+    isLoading
   }
 }
 

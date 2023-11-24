@@ -4,15 +4,17 @@ import styles from './login.style'
 import auth from '@react-native-firebase/auth'
 import EmailPasswordFormType from '../../../shared/forms/email-password/email-password-form.type'
 import EmailPasswordForm from '../../../shared/forms/email-password/email-password-form.component'
+import ActivityIndicator from '../../../shared/components/activity-indicator/activity-indicator.component'
 import useLogin from './useLogin.hook'
 
 const Login = ({ route, navigation }) => {
   const {
     loginUserError,
-    createUserEmailAndPassword,
+    loginUserEmailAndPassword,
     errors,
     control,
-    handleSubmit
+    handleSubmit,
+    isLoading
   } = useLogin()
 
   const onLoginAnonymous = async () => {
@@ -34,8 +36,10 @@ const Login = ({ route, navigation }) => {
 
   const onSubmitLogin = async ({ email, password }: EmailPasswordFormType) => {
     console.log('devug data', { email, password })
-    await createUserEmailAndPassword(email, password)
+    await loginUserEmailAndPassword(email, password)
   }
+
+  if (isLoading) return <ActivityIndicator />
 
   return (
     <View style={styles.root}>

@@ -7,6 +7,7 @@ import schema from '../../../shared/forms/email-password/email-password-form.sch
 
 const useLogin = () => {
   const [loginUserError, setLoginUserError] = useState<string>()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const {
     handleSubmit,
     control,
@@ -15,11 +16,9 @@ const useLogin = () => {
     resolver: yupResolver(schema)
   })
 
-  const createUserEmailAndPassword = async (
-    email: string,
-    password: string
-  ) => {
+  const loginUserEmailAndPassword = async (email: string, password: string) => {
     try {
+      setIsLoading(true)
       await signInWithEmailAndPassword(email, password)
     } catch (error: any) {
       if (error.code === 'auth/invalid-login') {
@@ -32,6 +31,7 @@ const useLogin = () => {
         console.error(error)
         setLoginUserError('There was an error. Please try again later')
       }
+      setIsLoading(false)
     }
   }
 
@@ -40,7 +40,8 @@ const useLogin = () => {
     control,
     handleSubmit,
     loginUserError,
-    createUserEmailAndPassword
+    loginUserEmailAndPassword,
+    isLoading
   }
 }
 
