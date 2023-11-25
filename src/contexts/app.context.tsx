@@ -11,17 +11,15 @@ type AppContextProps = {
 type AppContext = {
   logOut: () => void
   deeplink: string | null
-  theme: ColorSchemeName
   setDeepLink: React.Dispatch<React.SetStateAction<string | null>>
-  setTheme: React.Dispatch<React.SetStateAction<ColorSchemeName>>
+  toggleTheme: () => void
 }
 
 const DEFAULT_CONTEXT: AppContext = {
   logOut: () => {},
   deeplink: null,
-  theme: 'light',
   setDeepLink: () => {},
-  setTheme: () => {}
+  toggleTheme: () => {}
 }
 
 const AppContext = createContext<AppContext>(DEFAULT_CONTEXT)
@@ -30,6 +28,14 @@ const AppProvider: FC<AppContextProps> = ({ children, setTheme, theme }) => {
   const [deeplink, setDeepLink] = useState<string | null>(
     DEFAULT_CONTEXT.deeplink
   )
+
+  const toggleTheme = () => {
+    if (theme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
+  }
 
   const clearContext = () => {
     setDeepLink(null)
@@ -46,8 +52,7 @@ const AppProvider: FC<AppContextProps> = ({ children, setTheme, theme }) => {
   }
 
   return (
-    <AppContext.Provider
-      value={{ logOut, deeplink, setDeepLink, setTheme, theme }}>
+    <AppContext.Provider value={{ logOut, deeplink, setDeepLink, toggleTheme }}>
       {children}
     </AppContext.Provider>
   )

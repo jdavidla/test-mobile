@@ -7,7 +7,7 @@ import useLogin, { LoginFormType } from './useLogin.hook'
 import { AppContext } from '../../../contexts/app.context'
 
 const Login = ({ route, navigation }) => {
-  const { theme, setTheme } = useContext(AppContext)
+  const { toggleTheme } = useContext(AppContext)
   const {
     loginUserError,
     loginUserEmailAndPassword,
@@ -25,14 +25,6 @@ const Login = ({ route, navigation }) => {
   const onSubmitLogin = async ({ email, password }: LoginFormType) => {
     console.log('devug data', { email, password })
     await loginUserEmailAndPassword(email, password)
-  }
-
-  const changeTheme = () => {
-    if (theme === 'dark') {
-      setTheme('light')
-    } else {
-      setTheme('dark')
-    }
   }
 
   if (isLoading) return <ActivityIndicator />
@@ -81,7 +73,7 @@ const Login = ({ route, navigation }) => {
       </View>
       <Button title="Login Anonymous" onPress={onLoginAnonymous} />
       <Button title="Register" onPress={goToSignUp} />
-      <Button title="Change theme" onPress={changeTheme} />
+      <Button title="Change theme" onPress={toggleTheme} />
     </View>
   )
 }

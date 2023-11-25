@@ -18,10 +18,8 @@ import {
 import {
   NavigationContainer,
   DefaultTheme,
-  DarkTheme,
-  Theme
+  DarkTheme
 } from '@react-navigation/native'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { RN_APP_CONFIG } from './src/shared/config/envs.config'
 import SplashScreen from 'react-native-splash-screen'
 import RootNavigator from './src/navigation/stacks/root-navigator.stack'
@@ -55,15 +53,6 @@ function App(): JSX.Element {
     if (url && !!auth().currentUser) {
       handleDeepLink(url, true)
       navigationRef.navigate('AuthorizedStack', { screen: 'Profile' }) // Navigates from home
-      // navigationRef.reset({
-      //   index: 0,
-      //   routes: [
-      //     {
-      //       name: 'AuthorizedStack',
-      //       params: { screen: 'Profile', params: { id: 'getInitialURL' } }
-      //     }
-      //   ]
-      // })
     } else if (url) {
       setDeepLink(url)
     }
@@ -75,15 +64,6 @@ function App(): JSX.Element {
     if (!!auth().currentUser) {
       handleDeepLink(event.url, true)
       navigationRef.navigate('AuthorizedStack', { screen: 'Profile' }) // Navigates from home
-      // navigationRef.reset({
-      //   index: 0,
-      //   routes: [
-      //     {
-      //       name: 'AuthorizedStack',
-      //       params: { screen: 'Profile', params: { id: 'urlListener' } }
-      //     }
-      //   ]
-      // })
     } else {
       setDeepLink(event.url)
     }

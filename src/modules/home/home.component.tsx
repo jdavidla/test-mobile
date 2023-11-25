@@ -18,6 +18,8 @@ const Home = ({ route, navigation }) => {
       {!!currentUser() && currentUser()?.email && (
         <Text>Welcome {currentUser()?.email}</Text>
       )}
+      <Text>Route</Text>
+      <Text>{JSON.stringify(route)}</Text>
       <Button title="Log out" onPress={logOut} />
     </View>
   )
