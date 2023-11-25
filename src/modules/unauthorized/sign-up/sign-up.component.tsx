@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text, Button, TextInput } from 'react-native'
+import { View, Text, Button } from 'react-native'
+import { TextInput, ActivityIndicator } from '../../../shared/components'
 import { Controller } from 'react-hook-form'
 import useSignUp, { SignUpFormType } from './useSignUp.hook'
-import ActivityIndicator from '../../../shared/components/activity-indicator/activity-indicator.component'
 import styles from './signup.style'
 
 const Signup = () => {
@@ -26,13 +26,12 @@ const Signup = () => {
     <View style={styles.root}>
       <Text style={styles.text}>Signup</Text>
       <View>
-        <Text>Email:</Text>
         <Controller
           control={control}
           name="email"
           render={({ field: { value, onChange } }) => (
             <TextInput
-              style={styles.textInput}
+              label="Email:"
               placeholder="email"
               inputMode="email"
               onChangeText={onChange}
@@ -43,13 +42,13 @@ const Signup = () => {
         {errors.email && (
           <Text style={styles.errorText}>{errors.email.message}</Text>
         )}
-        <Text>Password:</Text>
+
         <Controller
           control={control}
           name="password"
           render={({ field: { value, onChange } }) => (
             <TextInput
-              style={styles.textInput}
+              label="Password:"
               placeholder="password"
               inputMode="text"
               onChangeText={onChange}

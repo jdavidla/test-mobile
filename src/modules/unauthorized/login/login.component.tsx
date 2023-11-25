@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text, Button, TextInput } from 'react-native'
+import { View, Text, Button } from 'react-native'
+import { TextInput, ActivityIndicator } from '../../../shared/components'
 import styles from './login.style'
 import { Controller } from 'react-hook-form'
-import ActivityIndicator from '../../../shared/components/activity-indicator/activity-indicator.component'
 import useLogin, { LoginFormType } from './useLogin.hook'
 
 const Login = ({ route, navigation }) => {
@@ -31,30 +31,29 @@ const Login = ({ route, navigation }) => {
     <View style={styles.root}>
       <Text style={styles.text}>Login</Text>
       <View>
-        <Text>Email:</Text>
         <Controller
           control={control}
           name="email"
           render={({ field: { value, onChange } }) => (
             <TextInput
-              style={styles.textInput}
               placeholder="email"
               inputMode="email"
               onChangeText={onChange}
               value={value}
+              label="Email:"
             />
           )}
         />
         {errors.email && (
           <Text style={styles.errorText}>{errors.email.message}</Text>
         )}
-        <Text>Password:</Text>
+
         <Controller
           control={control}
           name="password"
           render={({ field: { value, onChange } }) => (
             <TextInput
-              style={styles.textInput}
+              label="Password:"
               placeholder="password"
               inputMode="text"
               onChangeText={onChange}

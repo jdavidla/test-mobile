@@ -9,8 +9,5 @@ export default EStyleSheet.create({
   text: {
     color: 'black',
     fontSize: 16
-  },
-  textInput: {
-    backgroundColor: 'white'
   }
 })

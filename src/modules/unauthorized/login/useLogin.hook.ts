@@ -56,8 +56,10 @@ const useLogin = () => {
     } catch (error: any) {
       if (error.code === 'auth/operation-not-allowed') {
         console.log('devug Enable anonymous in your firebase console.')
+      } else {
+        console.error('devug error', error)
+        setLoginUserError('There was an error. Please try again later')
       }
-      console.error('devug error', error)
       setIsLoading(false)
     }
   }
