@@ -6,7 +6,7 @@ import Signup from '../../modules/unauthorized/sign-up/sign-up.component'
 const Stack = createNativeStackNavigator()
 
 const UnauthorizedStack: FC = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+  <Stack.Navigator screenOptions={{ headerShown: true }}>
     <Stack.Screen name="Login" component={Login} />
     <Stack.Screen name="Signup" component={Signup} />
   </Stack.Navigator>

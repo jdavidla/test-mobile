@@ -7,6 +7,7 @@ import {
   Text
 } from 'react-native'
 import styles from './text-input.styles'
+import { useTheme } from '@react-navigation/native'
 
 type TextInputProps = {
   placeholder?: string
@@ -29,9 +30,15 @@ const TextInput = ({
   label,
   labelStyles
 }: TextInputProps) => {
+  const { colors } = useTheme()
+
   return (
     <>
-      {label && <Text style={[styles.label, labelStyles]}>{label}</Text>}
+      {label && (
+        <Text style={[{ color: colors.text }, styles.label, labelStyles]}>
+          {label}
+        </Text>
+      )}
       <Input
         style={[styles.input, inputStyles]}
         placeholder={placeholder}

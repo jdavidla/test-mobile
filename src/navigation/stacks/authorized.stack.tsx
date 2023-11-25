@@ -6,7 +6,7 @@ import Profile from '../../modules/profile/profile.component'
 const Stack = createNativeStackNavigator()
 
 const AuthorizedStack: FC = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
+  <Stack.Navigator screenOptions={{ headerShown: true }}>
     <Stack.Screen name="Home" component={Home} />
     <Stack.Screen name="Profile" component={Profile} />
   </Stack.Navigator>

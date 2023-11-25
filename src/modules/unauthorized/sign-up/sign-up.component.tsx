@@ -24,7 +24,6 @@ const Signup = () => {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.text}>Signup</Text>
       <View>
         <Controller
           control={control}
@@ -66,7 +65,6 @@ const Signup = () => {
           name="confirmPassword"
           render={({ field: { value, onChange } }) => (
             <TextInput
-              style={styles.textInput}
               placeholder="Confirm Password"
               inputMode="text"
               onChangeText={onChange}

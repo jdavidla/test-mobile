@@ -2,7 +2,7 @@ import React, { useContext, FC, useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import UnauthorizedStack from './unauthorized.stack'
 import AuthorizedStack from './authorized.stack'
-import { AppContext } from '../../contexts/auth.context'
+import { AppContext } from '../../contexts/app.context'
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 
 type Props = {

@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, Button } from 'react-native'
 import { TextInput, ActivityIndicator } from '../../../shared/components'
 import styles from './login.style'
 import { Controller } from 'react-hook-form'
 import useLogin, { LoginFormType } from './useLogin.hook'
+import { AppContext } from '../../../contexts/app.context'
 
 const Login = ({ route, navigation }) => {
+  const { theme, setTheme } = useContext(AppContext)
   const {
     loginUserError,
     loginUserEmailAndPassword,
@@ -25,11 +27,18 @@ const Login = ({ route, navigation }) => {
     await loginUserEmailAndPassword(email, password)
   }
 
+  const changeTheme = () => {
+    if (theme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
+  }
+
   if (isLoading) return <ActivityIndicator />
 
   return (
     <View style={styles.root}>
-      <Text style={styles.text}>Login</Text>
       <View>
         <Controller
           control={control}
@@ -72,6 +81,7 @@ const Login = ({ route, navigation }) => {
       </View>
       <Button title="Login Anonymous" onPress={onLoginAnonymous} />
       <Button title="Register" onPress={goToSignUp} />
+      <Button title="Change theme" onPress={changeTheme} />
     </View>
   )
 }
