@@ -12,7 +12,7 @@ type Props = {
 
 const Stack = createNativeStackNavigator()
 
-const NavigationSwitch: FC<Props> = ({ user, deepLink }) => {
+const RootNavigator: FC<Props> = ({ user, deepLink }) => {
   const { setDeepLink } = useContext(AppContext)
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const NavigationSwitch: FC<Props> = ({ user, deepLink }) => {
   )
 }
 
-export default NavigationSwitch
+export default RootNavigator

@@ -5,7 +5,6 @@
   "scripts": {
     "lint": "eslint .",
     "start": "react-native start --reset-cache",
-    "test": "jest",
     "ipods": "cd ios && rm -rfv Pods/ Podfile.lock build && pod install",
     "ios:dev": "ENVFILE=.env.dev npx react-native run-ios --mode=Debug --scheme \"dev\"",
     "ios:dev-release": "ENVFILE=.env.dev npx react-native run-ios --mode=Release --scheme \"dev\"",
@@ -18,7 +17,8 @@
     "android:staging": "ENVFILE=.env.staging npx react-native run-android --mode=stagingDebug",
     "android:staging-release": "ENVFILE=.env.staging npx react-native run-android --mode=stagingRelease",
     "android:prod": "ENVFILE=.env.prod npx react-native run-android --mode=prodDebug",
-    "android:prod-release": "ENVFILE=.env.prod npx react-native run-android --mode=prodRelease"
+    "android:prod-release": "ENVFILE=.env.prod npx react-native run-android --mode=prodRelease",
+    "test": "jest"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",

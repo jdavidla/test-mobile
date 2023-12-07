@@ -1,4 +1,4 @@
-import React, { createContext, useState, FC, PropsWithChildren } from 'react'
+import React, { createContext, useState, FC } from 'react'
 import auth from '@react-native-firebase/auth'
 import { ColorSchemeName } from 'react-native/types'
 
