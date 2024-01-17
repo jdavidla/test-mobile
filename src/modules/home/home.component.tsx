@@ -4,14 +4,14 @@ import { AppContext } from '../../contexts/app.context'
 import { currentUser } from '../../shared/services/auth.service'
 
 const Home = ({ route, navigation }) => {
-  const { logOut, deeplink, setDeepLink } = useContext(AppContext)
+  const { logOut, deepLink, setDeepLink } = useContext(AppContext)
 
   useEffect(() => {
-    if (deeplink) {
+    if (deepLink) {
       navigation.navigate('Profile', { id: 'fromHome' })
       setDeepLink(null)
     }
-  }, [deeplink, navigation])
+  }, [deepLink, navigation])
 
   return (
     <View style={{ flex: 1 }}>

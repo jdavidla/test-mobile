@@ -26,7 +26,7 @@ const useLogin = () => {
     control,
     formState: { errors }
   } = useForm<LoginFormType>({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   })
 
   const loginUserEmailAndPassword = async (email: string, password: string) => {
